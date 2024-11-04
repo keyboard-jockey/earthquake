@@ -56,9 +56,10 @@ InfoStoreAdd terminal x-terminal-emulator
 DestroyFunc StartFunction
 AddToFunc   StartFunction
 + I Test (Init) InitBackground
-+ I Test (Init) Module FvwmBanner
+#+ I Test (Init) Module FvwmBanner
 + I Module FvwmButtons RightPanel
-+ I Module FvwmEvent EventNewDesk
++ I Exec exec firefox --new-tab https://www.google.com/
+#+ I Module FvwmEvent EventNewDesk
 
 # Function to set background when fvwm starts
 DestroyFunc InitBackground
@@ -136,16 +137,16 @@ AddToFunc   ToggleTitle
 + I WindowStyle !Title
 + I State 1 True
 
-# Function: ChangeDesk
-#
-# This function is called by FvwmEvent every time the Desk is changed.
-DestroyFunc ChangeDesk
-AddToFunc   ChangeDesk
-+ I SendToModule FvwmButtons ChangeButton desk0 Colorset 10
-+ I SendToModule FvwmButtons ChangeButton desk1 Colorset 10
-+ I SendToModule FvwmButtons ChangeButton desk2 Colorset 10
-+ I SendToModule FvwmButtons ChangeButton desk3 Colorset 10
-+ I SendToModule FvwmButtons ChangeButton desk$0 Colorset 11
+## Function: ChangeDesk
+##
+## This function is called by FvwmEvent every time the Desk is changed.
+#DestroyFunc ChangeDesk
+#AddToFunc   ChangeDesk
+#+ I SendToModule FvwmButtons ChangeButton desk0 Colorset 10
+#+ I SendToModule FvwmButtons ChangeButton desk1 Colorset 10
+#+ I SendToModule FvwmButtons ChangeButton desk2 Colorset 10
+#+ I SendToModule FvwmButtons ChangeButton desk3 Colorset 10
+#+ I SendToModule FvwmButtons ChangeButton desk$0 Colorset 11
 
 
 #############
@@ -164,11 +165,12 @@ AddToFunc   ChangeDesk
 #   |   |   |
 #   +---+---+
 #
-DesktopName 0 Main
-DesktopName 1 Desk1
-DesktopName 2 Desk2
-DesktopName 3 Desk3
-DesktopSize 2x2
+#DesktopName 0 Main
+#DesktopName 1 Desk1
+#DesktopName 2 Desk2
+#DesktopName 3 Desk3
+#DesktopSize 2x2
+DesktopSize 0x0
 
 # EdgeScroll will move the view port between the Pages when the mouse
 # moves to the edge of the screen. This set the amount of distance to
@@ -286,16 +288,17 @@ MenuStyle * Font "xft:Sans:Bold:size=8:antialias=True"
 # The root menu will PopUp with a click in the root
 # window or using alt-f1 (or menu).
 DestroyMenu MenuFvwmRoot
-AddToMenu   MenuFvwmRoot "Fvwm" Title
-+ "&Programs%icons/programs.png%" Popup MenuPrograms
-+ "XDG &Menu%icons/apps.png%" Popup XDGMenu
+AddToMenu   MenuFvwmRoot "Hi Mom!" Title
+#+ "&Programs%icons/programs.png%" Popup MenuPrograms
+Test (x firefox) + "INTERNET" Exec exec firefox
+#+ "XDG &Menu%icons/apps.png%" Popup XDGMenu
 + "&XTerm%icons/terminal.png%" Exec exec $[infostore.terminal]
-+ "" Nop
-+ "Fvwm&Console%icons/terminal.png%" Module FvwmConsole -terminal $[infostore.terminal]
+#+ "" Nop
+#+ "Fvwm&Console%icons/terminal.png%" Module FvwmConsole -terminal $[infostore.terminal]
 + "&Wallpapers%icons/wallpaper.png%" Popup BGMenu
-+ "M&an Pages%icons/help.png%" Popup MenuFvwmManPages
-+ "Copy Config%icons/conf.png%" FvwmScript FvwmScript-ConfirmCopyConfig
-+ "" Nop
+#+ "M&an Pages%icons/help.png%" Popup MenuFvwmManPages
+#+ "Copy Config%icons/conf.png%" FvwmScript FvwmScript-ConfirmCopyConfig
+#+ "" Nop
 + "Re&fresh%icons/refresh.png%" Refresh
 + "&Restart%icons/restart.png%" Restart
 + "&Quit%icons/quit.png%" Module FvwmScript FvwmScript-ConfirmQuit
@@ -582,13 +585,18 @@ DestroyModuleConfig RightPanel:*
 *RightPanel: (120x45, Icon "fvwm-logo-small.png", Frame 0)
 *RightPanel: (120x5, Frame 0)
 *RightPanel: (10x20, Frame 0)
-*RightPanel: (25x20, Id desk0, Title "0", Action (Mouse 1) GotoDesk 0 0, Colorset 11, ActiveColorset 12, Frame 0)
-*RightPanel: (25x20, Id desk1, Title "1", Action (Mouse 1) GotoDesk 0 1, ActiveColorset 12, Frame 0)
-*RightPanel: (25x20, Id desk2, Title "2", Action (Mouse 1) GotoDesk 0 2, ActiveColorset 12, Frame 0)
-*RightPanel: (25x20, Id desk3, Title "3", Action (Mouse 1) GotoDesk 0 3, ActiveColorset 12, Frame 0)
+*RightPanel: (25x20, Frame 0)
+*RightPanel: (25x20, Frame 0)
+*RightPanel: (25x20, Frame 0)
+*RightPanel: (25x20, Frame 0)
+#*RightPanel: (25x20, Id desk0, Title "0", Action (Mouse 1) GotoDesk 0 0, Colorset 11, ActiveColorset 12, Frame 0)
+#*RightPanel: (25x20, Id desk1, Title "1", Action (Mouse 1) GotoDesk 0 1, ActiveColorset 12, Frame 0)
+#*RightPanel: (25x20, Id desk2, Title "2", Action (Mouse 1) GotoDesk 0 2, ActiveColorset 12, Frame 0)
+#*RightPanel: (25x20, Id desk3, Title "3", Action (Mouse 1) GotoDesk 0 3, ActiveColorset 12, Frame 0)
 *RightPanel: (10x20, Frame 0)
 *RightPanel: (5x80, Frame 0)
-*RightPanel: (110x80, Swallow FvwmPager 'Module FvwmPager *', Frame 0)
+*RightPanel: (110x80, Frame 0)
+#*RightPanel: (110x80, Swallow FvwmPager 'Module FvwmPager *', Frame 0)
 *RightPanel: (5x80, Frame 0)
 *RightPanel: (120x5, Frame 0)
 Test (x stalonetray) *RightPanel: (120x20, Swallow(NoClose,UseOld) \
