@@ -1,6 +1,6 @@
 WindowTitle {DateTime}
-WindowSize  120 35
-Font "xft:Sans:style=Bold:size=10" 
+WindowSize  120 55
+Font "xft:Sans:style=Bold:size=13" 
 
 Init
  Begin
@@ -26,8 +26,8 @@ End
 Widget 1
 Property
  Position 0 0
- Size 120 20
- Font "xft:Sans:style=Bold:size=11"
+ Size 120 25
+ Font "xft:Sans:style=Bold:size=13"
  Type ItemDraw
  Flags NoReliefString
  Title {}
@@ -40,9 +40,9 @@ End
 
 Widget 2
 Property
- Position 0 20
- Size 120 15
- Font "xft:Sans:style=Bold:size=8"
+ Position 0 25
+ Size 120 30
+ Font "xft:Sans:style=Bold:size=13"
  Type ItemDraw
  Flags NoReliefString
  Title {}
