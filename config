@@ -195,10 +195,11 @@ MoveThreshold 3
 
 # Sets the focus style to SloppyFocus and a mouse click
 # in a window will Raise it.
-Style * SloppyFocus, MouseFocusClickRaises
+#Style * ClickToFocus, ClickToFocusRaises, ClickToFocusPassesClickOff
+Style * ClickToFocus, ClickToFocusRaises
 
 # Default Font
-DefaultFont "xft:Sans:Bold:size=8:antialias=True"
+DefaultFont "xft:Sans:Bold:size=13:antialias=True"
 
 # Window Placement
 Style * MinOverlapPlacement, GrabFocusOff, !UsePPosition
@@ -281,7 +282,7 @@ MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7, TitleColorset 8
 MenuStyle * Hilight3DOff, HilightBack, HilightTitleBack, SeparatorsLong
 MenuStyle * TrianglesSolid, TrianglesUseFore
 MenuStyle * ItemFormat "%|%3.1i%5.3l%5.3>%|"
-MenuStyle * Font "xft:Sans:Bold:size=8:antialias=True"
+MenuStyle * Font "xft:Sans:Bold:size=13:antialias=True"
 
 # Root Menu
 #
@@ -334,15 +335,16 @@ AddToMenu   BGMenu "Wallpapers" Title
 # Window Operations Menus
 DestroyMenu MenuWindowOps
 AddToMenu   MenuWindowOps
-+ "Move"      Move
-+ "Resize"    Resize
-+ "Iconify"   Iconify
-+ "Maximize"  Maximize
-+ "Shade"     WindowShade
-+ "Stick"     Stick
-+ "" Nop
-+ "Close"     Close
-+ "More..."   Menu MenuWindowOpsLong This 0 0
+#+ "Move"      Move
+#+ "Resize"    Resize
+#+ "Iconify"   Iconify
++ "[Hide] this window to the Right Sidebar"   Iconify
++ "[Full Screen] this Window"  Maximize
+#+ "Shade"     WindowShade
+#+ "Stick"     Stick
+#+ "" Nop
++ "[Close] this Window"     Close
+#+ "More..."   Menu MenuWindowOpsLong This 0 0
 
 DestroyMenu MenuWindowOpsLong
 AddToMenu   MenuWindowOpsLong
@@ -496,7 +498,7 @@ Mouse 4	T    A WindowShade True
 Mouse 5	T    A WindowShade False
 Mouse 1	R    A Menu MenuFvwmRoot
 Mouse 2	R    A WindowList
-Mouse 3	R    A Menu MenuWindowOpsLong
+#Mouse 3	R    A Menu MenuWindowOpsLong
 Mouse 1	I    A RaiseMoveX Move "Iconify off"
 Mouse 3	T    A Menu MenuWindowOps
 Mouse 3 I    A Menu MenuIconOps
@@ -511,7 +513,7 @@ Mouse 3 I    A Menu MenuIconOps
 #   4 - Maximize
 #   6 - Minimize
 ###########
-TitleStyle Centered Height 18 -- Flat
+TitleStyle Centered Height 30 -- Flat
 ButtonStyle All ActiveUp Vector 5 15x15@4 15x85@3 85x85@3 85x15@3 \
                 15x15@3 -- Flat
 ButtonStyle All ToggledActiveUp Vector 5 15x15@4 15x85@3 85x85@3 \
@@ -581,7 +583,7 @@ DestroyModuleConfig RightPanel:*
 *RightPanel: Rows $[vp.height]
 *RightPanel: Columns 120
 *RightPanel: Frame 0
-*RightPanel: Font "xft:Sans:Bold:size=10:antialias=True"
+*RightPanel: Font "xft:Sans:Bold:size=13:antialias=True"
 *RightPanel: (120x45, Icon "fvwm-logo-small.png", Frame 0)
 *RightPanel: (120x5, Frame 0)
 *RightPanel: (10x20, Frame 0)
@@ -632,7 +634,7 @@ DestroyModuleConfig FvwmPager:*
 # is used as the window list in the panel or taskbar.
 DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: UseWinList true
-*FvwmIconMan: ButtonGeometry 120x20
+*FvwmIconMan: ButtonGeometry 120x60
 *FvwmIconMan: ManagerGeometry 1x1
 *FvwmIconMan: Colorset 10
 *FvwmIconMan: FocusColorset 11
@@ -643,7 +645,7 @@ DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: DrawIcons always
 *FvwmIconMan: ReliefThickness 0
 *FvwmIconMan: Format "%t"
-*FvwmIconMan: Font "xft:Sans:Bold:size=8:antialias=True"
+*FvwmIconMan: Font "xft:Sans:Bold:size=11:antialias=True"
 *FvwmIconMan: Action Mouse 0 A ret
 *FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
 *FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
