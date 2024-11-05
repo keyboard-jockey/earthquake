@@ -322,7 +322,7 @@ Test (x firefox) + "THE INTERNET" Exec exec firefox
 #Test (x $[infostore.runcmd]) + "R&un Command%icons/run_arrow.png%" Exec exec $[infostore.runcmd] $[infostore.runcmdopt]
 #+ "" Nop
 #+ "Fvwm&Console%icons/terminal.png%"       Module FvwmConsole -terminal $[infostore.terminal]
-#+ "$[gt.&Wallpapers]%icons/wallpaper.png%" Popup BGMenu
++ "$[gt.&Wallpapers]%icons/wallpaper.png%" Popup BGMenu
 #+ "$[gt.M&an Pages]%icons/help.png%"       Popup MenuFvwmManPages
 #+ "$[gt.Cop&y Config]%icons/conf.png%"     FvwmScript FvwmScript-ConfirmCopyConfig
 + "" Nop
@@ -511,8 +511,10 @@ Test (x $[infostore.runcmd]) Silent Key Space A M Exec exec $[infostore.runcmd] 
 Mouse 1 1 A Menu MenuWindowOps Delete
 Mouse 1 2 A Close
 Mouse 1 4 A Maximize 100 100
-Mouse 2 4 A Maximize 0 100
-Mouse 3 4 A Maximize 100 0
+#Mouse 2 4 A Maximize 0 100
+#Mouse 3 4 A Maximize 100 0
+Mouse 2 4 A Maximize 100 100
+Mouse 3 4 A Maximize 100 100
 Mouse 1 6 A Iconify
 
 #   TitleBar: Click to Raise, Move, Double Click to Maximize
@@ -530,8 +532,9 @@ Mouse 1 R    A Menu MenuFvwmRoot
 Mouse 2 R    A WindowList
 #Mouse 3 R    A Menu MenuWindowOpsLong
 Mouse 1 I    A RaiseMoveX Move "Iconify off"
-Mouse 3 T    A Menu MenuWindowOps
-Mouse 3 I    A Menu MenuIconOps
+Mouse 3 I    A RaiseMoveX Move "Iconify off"
+#Mouse 3 T    A Menu MenuWindowOps
+#Mouse 3 I    A Menu MenuIconOps
 
 # Shuffle moves a window in a given direction until it hits another window.
 # These bindings will shuffle a window using the arrow keys.
@@ -628,7 +631,7 @@ DestroyModuleConfig RightPanel:*
 *RightPanel: Columns 120
 *RightPanel: Frame 0
 *RightPanel: Font "xft:Sans:Bold:size=13:antialias=True"
-*RightPanel: (120x45, Icon "fvwm-logo-small.png", Frame 0)
+#*RightPanel: (120x45, Icon "fvwm-logo-small.png", Frame 0)
 *RightPanel: (120x5, Frame 0)
 *RightPanel: (10x20, Frame 0)
 *RightPanel: (25x20, Frame 0)
@@ -679,7 +682,7 @@ DestroyModuleConfig FvwmPager:*
 # is used as the window list in the panel or taskbar.
 DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: UseWinList true
-*FvwmIconMan: ButtonGeometry 120x60
+*FvwmIconMan: ButtonGeometry 120x70
 *FvwmIconMan: ManagerGeometry 1x1
 *FvwmIconMan: Colorset 10
 *FvwmIconMan: FocusColorset 11
@@ -693,7 +696,8 @@ DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: Font "xft:Sans:Bold:size=11:antialias=True"
 *FvwmIconMan: Action Mouse 0 A ret
 *FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
-*FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
+*FvwmIconMan: Action Mouse 3 A sendcommand IconManClick
+#*FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
 *FvwmIconMan: Resolution global
 *FvwmIconMan: Tips needed
 *FvwmIconMan: Sort id
