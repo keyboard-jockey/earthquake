@@ -317,7 +317,8 @@ DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "Hi Mom!" Title
 #+ "$[gt.&Programs]%icons/programs.png%" Popup MenuPrograms
 #+ "$[gt.XDG &Menu]%icons/apps.png%"     Popup XDGMenu
-Test (x firefox) + "THE INTERNET" Exec exec firefox
+#Test (x firefox) + "THE INTERNET" Exec exec firefox
+Test (x firefox) + "THE INTERNET" LimitApplication
 + "&XTerm%icons/terminal.png%"          Exec exec $[infostore.terminal]
 #Test (x $[infostore.runcmd]) + "R&un Command%icons/run_arrow.png%" Exec exec $[infostore.runcmd] $[infostore.runcmdopt]
 #+ "" Nop
@@ -632,6 +633,9 @@ DestroyModuleConfig RightPanel:*
 *RightPanel: Frame 0
 *RightPanel: Font "xft:Sans:Bold:size=13:antialias=True"
 #*RightPanel: (120x45, Icon "fvwm-logo-small.png", Frame 0)
+#*RightPanel: (120x45, Swallow TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
+*RightPanel: (120x45, Swallow TryMe 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
+#*RightPanel: (110x45, Swallow(NoClose,UseOld) TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
 *RightPanel: (120x5, Frame 0)
 *RightPanel: (10x20, Frame 0)
 *RightPanel: (25x20, Frame 0)
@@ -718,3 +722,9 @@ DestroyModuleConfig EventNewDesk:*
 # without needing a full copy of the default-config. This will also allow
 # default-config changes to get used after upgrades (if applicable).
 Test (f $[FVWM_USERDIR]/local.config) Read $[FVWM_USERDIR]/local.config
+
+# from https://fvwmforums.org/t/how-to-check-if-a-certain-window-already-exists/1156/4
+DestroyFunc LimitApplication
+AddToFunc   LimitApplication
++ I All (firefox, CurrentDesk) Raise
++ I TestRc (NoMatch) None (firefox, CurrentDesk) Exec exec firefox
