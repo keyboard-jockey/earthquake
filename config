@@ -138,8 +138,8 @@ AddToFunc   SetBG
 # This function is run from FvwmIconMan when the button is clicked.
 DestroyFunc IconManClick
 AddToFunc   IconManClick
-+ I ThisWindow (Raised, !Shaded, !Iconic, CurrentPage, AnyScreen) Iconify
-+ I TestRc (Match) Break
+#+ I ThisWindow (Raised, !Shaded, !Iconic, CurrentPage, AnyScreen) Iconify
+#+ I TestRc (Match) Break
 + I ThisWindow WindowShade off
 + I ThisWindow Iconify off
 + I ThisWindow Raise
