@@ -1,6 +1,6 @@
 # https://fvwmforums.org/t/how-to-check-if-a-certain-window-already-exists/1156/4
-#WindowTitle {PressMeExample}
-#WindowSize 110 45 
+WindowTitle {PressMeExample}
+WindowSize 120 45 
 Font "xft:monospace:size=12"
 
 Init
@@ -9,8 +9,8 @@ End
 
 Widget 1
 Property 
-# Size 34 6
-# Position 1 1
+ Position 0 0 
+ Size 120 45
  Flags NoReliefString
  Type PushButton
  Title {Internet}
@@ -18,7 +18,7 @@ Main
  Case message of
   SingleClic :
   Begin
-    Do {LimitApplication} 
+    Do {OnlyOneInternet} 
   End
 End
-#End
+End
