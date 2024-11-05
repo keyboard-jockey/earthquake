@@ -565,6 +565,7 @@ Key Left    WTSF    CSM Maximize True growleft 0
 #   6 - Minimize
 ###########
 TitleStyle Centered Height 30 -- Flat
+ButtonState ActiveDown True Inactive False InactiveDown False
 ButtonStyle All ActiveUp Vector 5 15x15@4 15x85@3 85x85@3 85x15@3 \
                 15x15@3 -- Flat
 ButtonStyle All ToggledActiveUp Vector 5 15x15@4 15x85@3 85x85@3 \
