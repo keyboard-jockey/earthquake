@@ -78,6 +78,8 @@ DestroyFunc StartFunction
 AddToFunc   StartFunction
 + I Test (Init) InitBackground
 + I Module FvwmButtons RightPanel
+# JAH prop to fix amd laptop screen tearing:
++ I Exec xrandr --output eDP --set TearFree on
 + I OnlyOneInternet
 #+ I Module FvwmEvent EventNewDesk
 
@@ -241,14 +243,17 @@ IgnoreModifiers L25
 
 # Decor Styles
 Style * BorderWidth 5, HandleWidth 5, MWMButtons, FvwmBorder, FirmBorder
-Style * Colorset 1, HilightColorset 2
+Style * Colorset 2, HilightColorset 1
 
 # BorderColorset and HilightBorderColorset take 8 positive colorsets
 # to specify the colorset for each edge and handle (corner). The order is:
 #   North NorthEast East SouthEast South SouthWest West NorthWest
 # This makes the edges and corners (handles) different colors.
-Style * BorderColorset 3 4 3 4 3 4 3 4
-Style * HilightBorderColorset 4 8 4 8 4 8 4 8
+#Style * BorderColorset 3 4 3 4 3 4 3 4
+#Style * HilightBorderColorset 4 8 4 8 4 8 4 8
+# JAH reverse so light = fg
+Style * HilightBorderColorset 3 4 3 4 3 4 3 4
+Style * BorderColorset 4 8 4 8 4 8 4 8
 
 # Disable Icons from appearing on desktop.
 # Comment this out or use Style * Icon to get the icons back.
