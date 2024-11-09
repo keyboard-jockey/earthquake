@@ -729,6 +729,7 @@ Test (f $[FVWM_USERDIR]/local.config) Read $[FVWM_USERDIR]/local.config
 DestroyFunc OnlyOneInternet
 AddToFunc   OnlyOneInternet
 + I All (firefox, CurrentDesk) Raise
++ I All (firefox, CurrentDesk) Maximize
 + I TestRc (NoMatch) None (firefox, CurrentDesk) Exec exec firefox
 
 # maximized popups are extreme!
