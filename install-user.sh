@@ -9,7 +9,7 @@ if [[ $(id -u) -eq "0" ]] ; then
   exit 1
 fi
 
-mv -i ~/.fvwm ~/.fvwm-$(date -Iseconds)
+mv -f ~/.fvwm ~/.fvwm-$(date -Iseconds) || true no previous .fvwm dir.
 ln -sf "${install_dir}/fvwm3" ~/.fvwm
 
 # TODO - Ponder name & templating it.

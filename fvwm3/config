@@ -84,6 +84,11 @@ AddToFunc   StartFunction
 #+ I Exec firefox
 #+ I LimitApplicationImproved xfce4-power-manager xfce4-power-manager  # FIXME need battery monitor; this one complains it's missing SESSION_MANAGER
 + I LimitApplicationImproved firefox firefox
++ I LimitApplicationImproved xbattbar xbattbar -c -p 300 -t 10
++ I Exec exec xclock -digital -strftime "%I:%M %p" -geometry 120x45-0-45
++ I Exec exec xclock -digital -strftime "%a %b %d" -geometry 120x45-0-0
+#+ I LimitApplicationImproved xclock xclock -digital -strftime "%I:%M %pn%a %b %d" -geometry 120x45-0-0
+#+ I LimitApplicationImproved TimeTime xclock -name DateDate -digital -strftime "%a %b %d" -geometry 120x45-0-45
 #+ ReadPipe 'sleep 2'
 #+ I LimitApplicationImproved firefox firefox
 #+ I Module FvwmEvent EventNewDesk
@@ -209,7 +214,7 @@ Style * EdgeMoveDelay 350, EdgeMoveResistance 350
 # EwmhBaseStruts [screen name] [left] [right] [top] [bottom]
 # Reserves space along the edge(s) of the Screen that will not
 # be covered when maximizing or placing windows.
-EwmhBaseStruts screen $[monitor.primary] 0 120 0 0
+EwmhBaseStruts screen $[monitor.primary] 0 120 0 15
 
 # This sets the ClickTime and MoveThreshold used to determine
 # Double Clicks, Hold and Move for the mouse.
@@ -268,6 +273,9 @@ Style RightPanel !Title, !Borders, !Handles, Sticky, \
                  WindowListSkip, NeverFocus
 Style ConfirmQuit !Title, PositionPlacement Center, WindowListSkip, Layer 6
 Style FvwmIdent WindowListSkip
+Style xclock  !Title, !Borders, !Handles, Sticky, \
+                 WindowListSkip, NeverFocus, \
+		Layer 6 
 
 #######
 # 3: Colorsets
@@ -330,7 +338,7 @@ AddToMenu   MenuFvwmRoot "Hi Mom!" Title
 #Test (x firefox) + "THE INTERNET" Exec exec firefox
 #Test (x firefox) + "THE INTERNET" OnlyOneInternet
 Test (x firefox) + "THE INTERNET" LimitApplicationImproved firefox firefox &
-+ "&XTerm%icons/terminal.png%"          Exec exec $[infostore.terminal]
+Test (x jason_special) + "&XTerm%icons/terminal.png%"          Exec exec $[infostore.terminal]
 #Test (x $[infostore.runcmd]) + "R&un Command%icons/run_arrow.png%" Exec exec $[infostore.runcmd] $[infostore.runcmdopt]
 #+ "" Nop
 #+ "Fvwm&Console%icons/terminal.png%"       Module FvwmConsole -terminal $[infostore.terminal]
@@ -672,10 +680,14 @@ Test (x stalonetray) PipeRead 'echo "*RightPanel: (120x$(($[monitor.$[monitor.pr
     Top, Swallow FvwmIconMan \'Module FvwmIconMan\', Frame 0)"'
 Test (!x stalonetray) PipeRead 'echo "*RightPanel: (120x$(($[monitor.$[monitor.primary].height]-205)),\
     Top, Swallow FvwmIconMan \'Module FvwmIconMan\', Frame 0)"'
-*RightPanel: (120x45, Swallow(NoClose,UseOld) Internet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox',\
-*RightPanel: (120x45, Swallow(NoClose,UseOld) DateTime 'Module FvwmScript FvwmScript-DateTime',\
-    Frame 0)
+#*RightPanel: (120x45, Swallow(NoClose,UseOld) TimeTime 'Exec exec xclock -digital -strftime "%I:%M %p" -geometry 120x45-0-0',\
+#    Frame 0)
+#*RightPanel: (120x45, Swallow(NoClose,UseOld) DateDate 'Exec exec xclock -digital -strftime "%a %b %d" -geometry 120x45-0-45',\
+#    Frame 0)
 *RightPanel: (120x5, Frame 0)
+#*RightPanel: (120x45, Swallow(NoClose,UseOld) Internet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox',\
+#*RightPanel: (120x45, Swallow(NoClose,UseOld) DateTime 'Module FvwmScript FvwmScript-DateTime',\
+#*RightPanel: (120x45, Swallow(NoClose,UseOld) DateTime 'Module FvwmScript FvwmScript-DateTime-two',\
 
 # FvwmPager
 #
@@ -764,3 +776,6 @@ AddToFunc   LimitApplicationImproved
 #Style firefox InitialMapCommand Maximize
 
 #Module FvwmConsole
+
+#Module /home/jason/gits/bgeer/FvwmBatteryDisplay.pl
+

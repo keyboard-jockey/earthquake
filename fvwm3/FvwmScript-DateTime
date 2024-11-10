@@ -35,6 +35,7 @@ Main
  Case message of
   SingleClic :
   Begin
+    Do {OnlyOneInternet} 
   End
 End
 
