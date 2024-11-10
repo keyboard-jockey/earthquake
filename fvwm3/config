@@ -80,7 +80,8 @@ AddToFunc   StartFunction
 + I Module FvwmButtons RightPanel
 # JAH prop to fix amd laptop screen tearing:
 + I Exec xrandr --output eDP --set TearFree on
-+ I OnlyOneInternet
+#+ I OnlyOneInternet
++ I Exec firefox
 #+ I Module FvwmEvent EventNewDesk
 
 # Function to set background when fvwm starts
@@ -639,10 +640,9 @@ DestroyModuleConfig RightPanel:*
 *RightPanel: Frame 0
 *RightPanel: Font "xft:Sans:Bold:size=13:antialias=True"
 #*RightPanel: (120x45, Icon "fvwm-logo-small.png", Frame 0)
-#*RightPanel: (120x45, Swallow TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
-#*RightPanel: (110x45, Swallow(NoClose,UseOld) TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
-*RightPanel: (120x45, Swallow TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
-#*RightPanel: (120x45, Swallow DateTime 'Module FvwmScript FvwmScript-DateTime', Frame 0)
+#*RightPanel: (110x45, Swallow TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
+*RightPanel: (110x45, Swallow(NoClose,UseOld) TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
+#### JAH fails to be swallowed: *RightPanel: (120x45, Swallow TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
 *RightPanel: (120x5, Frame 0)
 *RightPanel: (10x20, Frame 0)
 *RightPanel: (25x20, Frame 0)
@@ -666,7 +666,8 @@ Test (x stalonetray) PipeRead 'echo "*RightPanel: (120x$(($[monitor.$[monitor.pr
     Top, Swallow FvwmIconMan \'Module FvwmIconMan\', Frame 0)"'
 Test (!x stalonetray) PipeRead 'echo "*RightPanel: (120x$(($[monitor.$[monitor.primary].height]-205)),\
     Top, Swallow FvwmIconMan \'Module FvwmIconMan\', Frame 0)"'
-*RightPanel: (120x45, Swallow DateTime 'Module FvwmScript FvwmScript-DateTime',\
+*RightPanel: (120x45, Swallow(NoClose,UseOld) Internet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox',\
+*RightPanel: (120x45, Swallow(NoClose,UseOld) DateTime 'Module FvwmScript FvwmScript-DateTime',\
     Frame 0)
 *RightPanel: (120x5, Frame 0)
 
