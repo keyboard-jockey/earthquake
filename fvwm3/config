@@ -82,6 +82,7 @@ AddToFunc   StartFunction
 + I Exec xrandr --output eDP --set TearFree on
 #+ I OnlyOneInternet
 #+ I Exec firefox
+#+ I LimitApplicationImproved xfce4-power-manager xfce4-power-manager  # FIXME need battery monitor; this one complains it's missing SESSION_MANAGER
 + I LimitApplicationImproved firefox firefox
 #+ ReadPipe 'sleep 2'
 #+ I LimitApplicationImproved firefox firefox
