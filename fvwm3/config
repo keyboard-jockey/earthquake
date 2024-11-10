@@ -81,7 +81,10 @@ AddToFunc   StartFunction
 # JAH prop to fix amd laptop screen tearing:
 + I Exec xrandr --output eDP --set TearFree on
 #+ I OnlyOneInternet
-+ I Exec firefox
+#+ I Exec firefox
++ I LimitApplicationImproved firefox firefox
+#+ ReadPipe 'sleep 2'
+#+ I LimitApplicationImproved firefox firefox
 #+ I Module FvwmEvent EventNewDesk
 
 # Function to set background when fvwm starts
@@ -167,7 +170,6 @@ AddToFunc   ToggleTitle
 #+ I SendToModule FvwmButtons ChangeButton desk2 Colorset 10
 #+ I SendToModule FvwmButtons ChangeButton desk3 Colorset 10
 #+ I SendToModule FvwmButtons ChangeButton desk$0 Colorset 11
-
 
 #############
 # 2: Styles #
@@ -325,7 +327,8 @@ AddToMenu   MenuFvwmRoot "Hi Mom!" Title
 #+ "$[gt.&Programs]%icons/programs.png%" Popup MenuPrograms
 #+ "$[gt.XDG &Menu]%icons/apps.png%"     Popup XDGMenu
 #Test (x firefox) + "THE INTERNET" Exec exec firefox
-Test (x firefox) + "THE INTERNET" OnlyOneInternet
+#Test (x firefox) + "THE INTERNET" OnlyOneInternet
+Test (x firefox) + "THE INTERNET" LimitApplicationImproved firefox firefox &
 + "&XTerm%icons/terminal.png%"          Exec exec $[infostore.terminal]
 #Test (x $[infostore.runcmd]) + "R&un Command%icons/run_arrow.png%" Exec exec $[infostore.runcmd] $[infostore.runcmdopt]
 #+ "" Nop
@@ -639,10 +642,12 @@ DestroyModuleConfig RightPanel:*
 *RightPanel: Columns 120
 *RightPanel: Frame 0
 *RightPanel: Font "xft:Sans:Bold:size=13:antialias=True"
-#*RightPanel: (120x45, Icon "fvwm-logo-small.png", Frame 0)
+#*RightPanel: (120x45, Icon "fvwm-logo-small.png", Action(Mouse 1) "LimitApplicationImproved firefox firefox", Frame 0)
+*RightPanel: (120x45, Icon "Internet120x45.png", Action(Mouse 1) "LimitApplicationImproved firefox firefox", Frame 0)
 #*RightPanel: (110x45, Swallow TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
-*RightPanel: (110x45, Swallow(NoClose,UseOld) TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
-#### JAH fails to be swallowed: *RightPanel: (120x45, Swallow TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
+#*RightPanel: (110x45, Swallow(NoClose,UseOld) TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
+#### JAH fails to be swallowed:
+#*RightPanel: (110x80, Swallow TheInternet 'Module FvwmScript FvwmScript-RunOrRaiseFirefox', Frame 0)
 *RightPanel: (120x5, Frame 0)
 *RightPanel: (10x20, Frame 0)
 *RightPanel: (25x20, Frame 0)
@@ -738,8 +743,23 @@ AddToFunc   OnlyOneInternet
 + I All (firefox, CurrentDesk) Maximize
 + I TestRc (NoMatch) None (firefox, CurrentDesk) Exec exec firefox
 
+# https://www.fvwm.org/Wiki/CookBook/LimitApplication/
+DestroyFunc LimitApplicationImproved
+AddToFunc   LimitApplicationImproved
++ I Next ($0, CurrentDesk, CirculateHit) Maximize
++ I Next ($0, CurrentDesk, CirculateHit) Raise
++ I Next ($0, CurrentDesk, CirculateHit) Focus
++ I TestRc (NoMatch) None ($0, CurrentDesk) Exec exec $[1-]
+#+ I PipeRead 'sleep 2; echo Refresh'
+#+ I PipeRead 'sleep 2'
+#+ I Next ($0, CurrentDesk, CirculateHit) Maximize
+#+ I Next ($0, CurrentDesk, CirculateHit) Raise
+#+ I Next ($0, CurrentDesk, CirculateHit) Focus
+
 # maximized popups are extreme!
 #Style Navigator InitialMapCommand Maximize
 #Style Firefox InitialMapCommand Maximize
 #Style Firefox-bin InitialMapCommand Maximize
 #Style firefox InitialMapCommand Maximize
+
+#Module FvwmConsole

@@ -1,0 +1,6 @@
+# ASUS Viviobook 15.6" slowed down by half
+evdev:name:ASUF1200:00 2808:0203 Touchpad:dmi:*svnASUSTeKCOMPUTERINC.:*pnVivobookGoE1504FA_E1504FA**
+ EVDEV_ABS_00=::64
+ EVDEV_ABS_01=::65
+ EVDEV_ABS_35=::64
+ EVDEV_ABS_36=::65

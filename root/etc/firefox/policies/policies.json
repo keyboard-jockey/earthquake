@@ -1,0 +1,49 @@
+{
+	"policies": {
+		"DisableFirefoxAccounts": true,
+		"DisablePocket": true,
+		"DisableSecurityBypass": {
+			"InvalidCertificate": true,
+			"SafeBrowsing": true
+		},
+		"EnableTrackingProtection": {
+			"Value": true,
+			"Locked": true,
+			"Cryptomining": true,
+			"Fingerprinting": true,
+			"EmailTracking": true
+		},
+		"ExtensionSettings": {
+			"*": {
+				"blocked_install_message": "Jason has disabled extensions.",
+				"installation_mode": "blocked"
+			}
+		},
+		"schemes": {
+			"mailto": {
+				"action": "useHelperApp",
+				"ask": false,
+				"handlers": [{
+					"name": "Gmail",
+					"uriTemplate": "https://mail.google.com/mail/?extsrc=mailto&url=%s"
+				}]
+			}
+		},
+		"Homepage": {
+			"URL": "file:///home/jason/Earthquake/www/barbarashomepage.html",
+			"Locked": true,
+			"StartPage": "homepage-locked"
+		},
+		"InstallAddonsPermission": {
+			"Default": false
+		},
+		"OverridePostUpdatePage": "file:///home/jason/Earthquake/www/barbarashomepage.html",
+		"UserMessaging": {
+			"ExtensionRecommendations": false,
+			"FeatureRecommendations": false,
+			"MoreFromMozilla": false,
+			"FirefoxLabs": false,
+			"Locked": true
+		}
+   	 }
+}
