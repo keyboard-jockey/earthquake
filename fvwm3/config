@@ -346,9 +346,16 @@ Test (x jason_special) + "&XTerm%icons/terminal.png%"          Exec exec $[infos
 #+ "$[gt.M&an Pages]%icons/help.png%"       Popup MenuFvwmManPages
 #+ "$[gt.Cop&y Config]%icons/conf.png%"     FvwmScript FvwmScript-ConfirmCopyConfig
 + "" Nop
-+ "$[gt.Re&fresh]%icons/refresh.png%" Refresh
+#+ "$[gt.Re&fresh]%icons/refresh.png%" Refresh
 + "$[gt.&Restart]%icons/restart.png%" Restart
 + "$[gt.&Quit]%icons/quit.png%"       Module FvwmScript FvwmScript-ConfirmQuit
++ "" Nop
++ "" Nop
++ "" Nop
++ "" Nop
++ "" Nop
++ "POWER OFF" Exec exec sudo shutdown -h now
+ 
 
 # Generate XDGMenu
 PipeRead "fvwm3-menu-desktop -e"
