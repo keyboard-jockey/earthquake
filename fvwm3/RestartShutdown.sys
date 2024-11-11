@@ -1,0 +1,22 @@
+## Modules: restartSDown.sys
+## By rasat 5 Feb 2021
+## oversimplified by keyboardjockey 10 Nov 2024
+
+Module FvwmButtons RestartShutdown
+
+DestroyModuleConfig RestartShutdown: *
+*RestartShutdown: Geometry +960+540
+*RestartShutdown: Frame 1
+*RestartShutdown: Rows 2
+*RestartShutdown: ColorSet 10
+*RestartShutdown: Font "xft:Sans:Bold:size=32:antialias=True"
+
+*RestartShutdown: (2x1, Title "Power Off?")
+
+*RestartShutdown: (2x1,Container(Rows 1,Frame 1))
+*RestartShutdown: (Title Cancel, Action(Mouse 1) KillModule FvwmButtons RestartShutdown)
+*RestartShutdown: (Title OK, Action(Mouse 1) Exec sudo shutdown -h now)
+
+Style RestartShutdown !Borders, !Title, WindowListSkip, StaysOnTop, Sticky
+Style RestartShutdown PositionPlacement Center
+Style RestartShutdown Layer 6
