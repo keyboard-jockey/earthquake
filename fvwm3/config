@@ -82,7 +82,8 @@ AddToFunc   StartFunction
 + I Exec xrandr --output eDP --set TearFree on
 + I LimitApplicationImproved firefox firefox
 #+ I LimitApplicationImproved xfce4-power-manager xfce4-power-manager  # FIXME need battery monitor; this one complains it's missing SESSION_MANAGER
-+ I Exec exec xbattbar -c -p 300 -t 10 -o "#ff9977"
+##+ I Exec exec sh -c "killall xbattbar xclock; xbattbar -c -p 300 -t 10 -o '#ff9977' -I 'olive drab' -O green ; xclock -digital -strftime '%I:%M %p' -geometry 120x45-0-45 ; xclock -digital -strftime '%a %b %d' -geometry 120x45-0-0"
++ I Exec exec xbattbar -c -p 300 -t 10 -o '#ff9977' -I 'olive drab' -O green
 + I Exec exec xclock -digital -strftime "%I:%M %p" -geometry 120x45-0-45
 + I Exec exec xclock -digital -strftime "%a %b %d" -geometry 120x45-0-0
 
